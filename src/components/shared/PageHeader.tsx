@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/SectionHeading";
+import Image from "next/image";
 
 interface PageHeaderProps {
   label?: string;
