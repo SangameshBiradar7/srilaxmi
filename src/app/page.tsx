@@ -10,6 +10,7 @@ import InnovationSection from "@/components/home/InnovationSection";
 import GalleryPreview from "@/components/home/GalleryPreview";
 import NewsPreview from "@/components/home/NewsPreview";
 import AdmissionsCTA from "@/components/home/AdmissionsCTA";
+import TrustComplianceCTA from "@/components/home/TrustComplianceCTA";
 import ContactPreview from "@/components/home/ContactPreview";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <GalleryPreview />
       <NewsPreview />
       <AdmissionsCTA />
+      <TrustComplianceCTA />
       <ContactPreview />
     </main>
   );

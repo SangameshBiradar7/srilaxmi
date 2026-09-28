@@ -68,6 +68,7 @@ export const navLinks = [
   { label: "Achievements", href: "/achievements" },
   { label: "Gallery", href: "/gallery" },
   { label: "News", href: "/news" },
+  { label: "Trust & Compliance", href: "/trust-compliance" },
 ];
 
 export const utilityLinks = [
@@ -76,3 +77,48 @@ export const utilityLinks = [
   { label: "Media", href: "#" },
   { label: "Contact", href: "/contact" },
 ];
+
+export const trustCompliance = {
+  heading: "Trust & Compliance",
+  subtitle: "Transparency. Safety. Recognition.",
+  intro:
+    "Sri Lakshmi Vidyaniketan Educational Society maintains its institutional certifications, safety documents, educational recognition and other official documents for transparency and public reference.",
+  documents: [
+    {
+      id: "fire-safety",
+      title: "Fire Safety Certificate",
+      description: "Official fire safety and compliance documentation.",
+      fileName: "Fire-Safety-Certificate.pdf",
+      filePath: "/certificates/fire-safety-certificate.pdf",
+      fileType: "pdf",
+      icon: "flame",
+    },
+    {
+      id: "building-safety",
+      title: "Building Safety Certificate",
+      description: "Official building and structural safety documentation.",
+      fileName: "Building-Safety-Certificate.pdf",
+      filePath: "/certificates/building-safety-certificate.pdf",
+      fileType: "pdf",
+      icon: "shield",
+    },
+    {
+      id: "beo-certificate",
+      title: "BEO Certificate",
+      description: "Official documentation issued by the Block Education Office.",
+      fileName: "BEO-Certificate.pdf",
+      filePath: "/certificates/beo-certificate.pdf",
+      fileType: "pdf",
+      icon: "book-open",
+    },
+    {
+      id: "school-recognition",
+      title: "School Recognition Certificate",
+      description: "Official school recognition documentation – English version.",
+      fileName: "School-Recognition-Certificate-English.pdf",
+      filePath: "/certificates/school-recognition-certificate-english.pdf",
+      fileType: "pdf",
+      icon: "award",
+    },
+  ],
+};

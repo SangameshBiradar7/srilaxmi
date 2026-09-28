@@ -39,6 +39,7 @@ const footerSections = [
       { label: "Downloads", href: "#" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms & Conditions", href: "/terms" },
+      { label: "Trust & Compliance", href: "/trust-compliance" },
     ],
   },
 ];
