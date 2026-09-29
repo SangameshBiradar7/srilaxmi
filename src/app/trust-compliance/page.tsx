@@ -24,6 +24,7 @@ const iconMap: Record<string, React.ElementType> = {
   shield: Shield,
   "book-open": BookOpen,
   award: Award,
+  "file-text": FileText,
 };
 
 const container = {
