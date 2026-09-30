@@ -228,5 +228,14 @@ export const trustCompliance = {
       fileType: "pdf",
       icon: "file-text",
     },
+    {
+      id: "mandatory-disclosure-saras",
+      title: "Mandatory Disclosure Details",
+      description: "Official mandatory disclosure documentation – SARAS 7.0.",
+      fileName: "Mandatory Disclosure Details _ SARAS 7.0.pdf",
+      filePath: "/certificates/Mandatory%20Disclosure%20Details%20_%20SARAS%207.0.pdf",
+      fileType: "pdf",
+      icon: "file-text",
+    },
   ],
 };
