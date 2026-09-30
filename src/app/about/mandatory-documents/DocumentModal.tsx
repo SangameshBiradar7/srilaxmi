@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { X, ZoomIn, ZoomOut, Maximize2, Download } from "lucide-react";
+import { X, ZoomIn, ZoomOut, Maximize2, Download, ExternalLink } from "lucide-react";
 
 interface DocumentModalProps {
   isOpen: boolean;
@@ -21,13 +21,56 @@ export default function DocumentModal({
 }: DocumentModalProps) {
   const [zoom, setZoom] = useState(100);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [objectUrl, setObjectUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
       setZoom(100);
       setIsFullscreen(false);
+      setObjectUrl(null);
+      setLoading(false);
+      setError(false);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen || !doc || doc.fileType !== "pdf") {
+      setObjectUrl(null);
+      return;
+    }
+
+    let cancelled = false;
+    setLoading(true);
+    setError(false);
+
+    fetch(doc.filePath)
+      .then((res) => {
+        if (!res.ok) throw new Error("failed");
+        return res.blob();
+      })
+      .then((blob) => {
+        if (cancelled) return;
+        const url = URL.createObjectURL(blob);
+        setObjectUrl(url);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setObjectUrl(null);
+        setLoading(false);
+        setError(true);
+      });
+
+    return () => {
+      cancelled = true;
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+        setObjectUrl(null);
+      }
+    };
+  }, [isOpen, doc]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,6 +105,7 @@ export default function DocumentModal({
   if (!isOpen || !doc) return null;
 
   const isImageFile = doc.fileType !== "pdf";
+  const viewSrc = !isImageFile && objectUrl ? objectUrl : doc.filePath;
 
   return (
     <div className="fixed inset-0 z-[70] flex items-center justify-center">
@@ -134,12 +178,45 @@ export default function DocumentModal({
                 className="max-w-full h-auto mx-auto rounded-lg shadow-lg"
               />
             ) : (
-              <iframe
-                src={doc.filePath}
-                title={doc.title}
-                className="w-full h-[70vh] rounded-lg border border-slate-200"
-                style={{ minHeight: "500px" }}
-              />
+              <>
+                {loading && (
+                  <div className="flex items-center justify-center h-[50vh] text-slate-600">
+                    Loading preview...
+                  </div>
+                )}
+                {error && !loading && (
+                  <div className="flex flex-col items-center justify-center h-[50vh] text-slate-600 gap-3">
+                    <p>Preview is unavailable for this document.</p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <a
+                        href={doc.filePath}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-md border border-slate-300 text-midnight bg-transparent hover:bg-midnight/5 transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Open in new tab
+                      </a>
+                      <a
+                        href={doc.filePath}
+                        download={doc.fileName}
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-md border border-slate-300 text-midnight bg-transparent hover:bg-midnight/5 transition-colors"
+                      >
+                        <Download size={16} />
+                        Download instead
+                      </a>
+                    </div>
+                  </div>
+                )}
+                {!loading && !error && (
+                  <iframe
+                    src={viewSrc}
+                    title={doc.title}
+                    className="w-full h-[70vh] rounded-lg border border-slate-200"
+                    style={{ minHeight: "500px" }}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
