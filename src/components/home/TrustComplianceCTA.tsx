@@ -21,7 +21,7 @@ export default function TrustComplianceCTA() {
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
               Explore our institutional certifications, safety documents and official recognition records.
             </p>
-            <Button href="/trust-compliance" variant="primary" size="lg">
+            <Button href="/about/mandatory-documents" variant="primary" size="lg">
               View Institutional Documents
             </Button>
           </motion.div>

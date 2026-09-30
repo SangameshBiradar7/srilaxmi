@@ -12,6 +12,7 @@ import {
   BookOpen,
   Award,
   FileText,
+  Users,
   Download,
   ExternalLink,
   Phone,
@@ -25,6 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
   "book-open": BookOpen,
   award: Award,
   "file-text": FileText,
+  users: Users,
 };
 
 const container = {
