@@ -219,5 +219,14 @@ export const trustCompliance = {
       fileType: "pdf",
       icon: "file-text",
     },
+    {
+      id: "self-declaration-certificate",
+      title: "Self Declaration Certificate",
+      description: "Official self declaration documentation.",
+      fileName: "Self declaration certificate",
+      filePath: "/certificates/Self%20declaration%20certificate",
+      fileType: "pdf",
+      icon: "file-text",
+    },
   ],
 };
