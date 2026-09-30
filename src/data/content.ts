@@ -183,5 +183,14 @@ export const trustCompliance = {
       fileType: "pdf",
       icon: "file-text",
     },
+    {
+      id: "recognition-certificate",
+      title: "Recognition Certificate",
+      description: "Official recognition certificate documentation.",
+      fileName: "Recognition certificate.pdf",
+      filePath: "https://www.srilakshmividyaniketan.in/certificates/Recognition%20certificate.pdf",
+      fileType: "pdf",
+      icon: "award",
+    },
   ],
 };
